@@ -19,4 +19,6 @@
         <string name="title_messages">Messages</string>
         <string name="title_reservation">Reservation</string>
         <string name="title_home">Home</string>
+        <string name="FACEBOOK_APP_ID">559788750877179</string>
+        <string name="ACCOUNT_KIT_CLIENT_TOKEN">930faee5a0dd74f665a3a5b9b8ad33e4</string>
 </resources>
