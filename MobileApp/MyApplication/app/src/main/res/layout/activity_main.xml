@@ -28,7 +28,8 @@
         android:id="@+id/textView2" />
 
     <Button
-        android:text="Mobile number"
+        android:text="Login in Via Phone Number"
+        android:textAllCaps="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
