@@ -33,6 +33,10 @@
         <activity
             android:name=".LandingActivity"
             android:label="@string/title_activity_landing"
+            android:theme="@style/MyMaterialTheme" />
+        <activity
+            android:name=".ErrorActivity"
+            android:label="@string/title_activity_error"
             android:theme="@style/MyMaterialTheme"></activity>
     </application>
 

@@ -48,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
-        if (AccountKit.getCurrentAccessToken() != null) {
-            startActivity(new Intent(this, LandingActivity.class));
-        }
+//        if (AccountKit.getCurrentAccessToken() != null) {
+//            startActivity(new Intent(this, LandingActivity.class));
+//        }
     }
 
     public void onLoginPhone(final View view) {
@@ -74,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
             toastMessage = "Login Cancelled";
         } else if (loginResult.getError() != null) {
             toastMessage = loginResult.getError().getErrorType().getMessage();
-            final Intent intent = new Intent(this, ErrorActivity.class);
-            intent.putExtra(ErrorActivity.HELLO_TOKEN_ACTIVITY_ERROR_EXTRA, loginResult.getError());
+            //final Intent intent = new Intent(this, ErrorActivity.class);
+            //intent.putExtra(ErrorActivity.HELLO_TOKEN_ACTIVITY_ERROR_EXTRA, loginResult.getError());
 
-            startActivity(intent);
+            //startActivity(intent);
         } else {
             final AccessToken accessToken = loginResult.getAccessToken();
             final long tokenRefreshIntervalInSeconds =
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity {
             if (accessToken != null) {
                 toastMessage = "Success:" + accessToken.getAccountId()
                         + tokenRefreshIntervalInSeconds;
-                startActivity(new Intent(this, TokenActivity.class));
+                //startActivity(new Intent(this, TokenActivity.class));
             } else {
                 toastMessage = "Unknown response type";
             }
