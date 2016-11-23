@@ -27,4 +27,26 @@
     <string name="phone_number_label">Phone Number</string>
     <string name="email_label">Email</string>
     <string name="na">NA</string>
+
+
+    <!--Strings for App-->
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="nav_item_res">Reservations</string>
+    <string name="nav_item_checkins">Checkins</string>
+    <string name="nav_item_bookings">Previous Bookings</string>
+
+
+    <!-- navigation drawer item labels  -->
+    <string-array name="nav_drawer_labels">
+        <item>@string/nav_item_res</item>
+        <item>@string/nav_item_checkins</item>
+        <item>@string/nav_item_bookings</item>
+    </string-array>
+
+    <string name="title_checkin">Checkins</string>
+    <string name="title_reservations">Reservations</string>
+    <string name="title_home">Home</string>
+
+
 </resources>
