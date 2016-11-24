@@ -47,6 +47,12 @@
     <string name="title_checkin">Checkins</string>
     <string name="title_reservations">Reservations</string>
     <string name="title_home">Home</string>
+    <string name="title_activity_home">HomeActivity</string>
+
+    <string name="welcome_msg">Welcome to Stayin</string>
+    <string name="get_started">Get Started</string>
+    <string name="login_phone">Login Via Phone</string>
+    <string name="login_stayin_msg">Login to Stayin</string>
 
 
 </resources>

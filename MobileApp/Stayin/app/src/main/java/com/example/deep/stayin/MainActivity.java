@@ -28,6 +28,9 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
+    //Adding a Splash
+    private static int SPLASH_TIME_OUT = 4000;
+
     private static final int FRAMEWORK_REQUEST_CODE = 1;
     public static int APP_REQUEST_CODE = 99;
 
