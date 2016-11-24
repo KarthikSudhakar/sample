@@ -1,11 +1,11 @@
 <resources>
     <string name="action_bar_title_hello">StayIn</string>
     <string name="app_name">Stayin</string>
-    <string name="app_id">Add your app_id here</string>
+    <string name="app_id">165280230609453</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_landing">Landing</string>
     <string name="title_activity_error">ErrorActivity</string>
-    <string name="client_token">Add your Client token here</string>
+    <string name="client_token">59bbcbbe6da32760a4a50437782d233a</string>
     <string name="permissions_get_accounts_message">
         Grant permission to read your email address from your device to pre-fill.
     </string>
