@@ -53,6 +53,7 @@
     <string name="get_started">Get Started</string>
     <string name="login_phone">Login Via Phone</string>
     <string name="login_stayin_msg">Login to Stayin</string>
-
-
+    <string name="title_activity_login">Login</string>
+    <string name="splash">Stayin</string>
+    <string name ="logout">Logout</string>
 </resources>

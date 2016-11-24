@@ -19,6 +19,20 @@
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:textSize="25sp"
         android:layout_marginTop="203dp"
         android:id="@+id/textView" />
+
+    <Button
+        android:text="@string/logout"
+        android:background="@drawable/mybutton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+        android:textSize="25sp"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:id="@+id/btn_logout" />
 </RelativeLayout>
