@@ -13,26 +13,31 @@
     tools:context="com.example.deep.stayin.Landing"
     tools:showIn="@layout/activity_landing">
 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
     <TextView
         android:text="Welcome to Stay In"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:textSize="25sp"
-        android:layout_marginTop="203dp"
-        android:id="@+id/textView" />
+        android:layout_marginTop="31dp"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
 
     <Button
         android:text="@string/logout"
         android:background="@drawable/mybutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="75dp"
         android:textSize="25sp"
         android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:id="@+id/btn_logout" />
+        android:id="@+id/btn_logout"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="181dp" />
+
 </RelativeLayout>

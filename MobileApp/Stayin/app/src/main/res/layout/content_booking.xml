@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/content_booking"
+    android:padding="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.deep.stayin.Booking"
+    tools:showIn="@layout/activity_booking">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <android.support.design.widget.TextInputLayout
+        android:id="@+id/booking_input_layout_firstname"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_centerHorizontal = "true"
+        android:layout_marginTop="10dp"
+        >
+
+        <EditText
+            android:id="@+id/fname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="First name"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/booking_input_layout_lastname"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_centerHorizontal = "true"
+            android:layout_marginTop="10dp"
+            >
+
+            <EditText
+                android:id="@+id/lname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Last name"
+                />
+
+        </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/booking_input_layout_CheckinFrom"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_centerHorizontal = "true"
+        android:layout_marginTop="10dp"
+        >
+
+        <EditText
+            android:id="@+id/checkinfrom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Checkin From (mm/dd/yyyy)"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+        android:id="@+id/booking_input_layout_CheckinTo"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_centerHorizontal = "true"
+        android:layout_marginTop="10dp"
+            >
+
+        <EditText
+            android:id="@+id/checkinto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="Checkin To (mm/dd/yyyy)"
+            />
+
+    </android.support.design.widget.TextInputLayout>
+    
+        <Button
+            android:id="@+id/btn_book"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/mybutton"
+            android:textAllCaps="false"
+            android:textColor="#FFFFFF"
+            android:text="@string/book"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            />
+    </LinearLayout>
+
+</LinearLayout>

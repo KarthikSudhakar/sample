@@ -16,10 +16,13 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         AccountKit.initialize(getApplicationContext());
-
         setContentView(R.layout.activity_home);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        if (AccountKit.getCurrentAccessToken() != null) {
+            goToMyLoggedInActivity();
+        }
 
         getStarted = (Button) findViewById(R.id.btn_getstarted);
         getStarted.setOnClickListener(new View.OnClickListener() {
@@ -29,6 +32,11 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(LoginIntent);
             }
         });
+    }
+
+    private void goToMyLoggedInActivity() {
+        final Intent intent = new Intent(this, Landing.class);
+        this.startActivity(intent);
     }
 
 }
