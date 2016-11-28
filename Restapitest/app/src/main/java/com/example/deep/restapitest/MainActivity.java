@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.deep.restapitest.model.Booking;
 import com.example.deep.restapitest.service.APIService;
@@ -22,6 +23,15 @@ public class MainActivity extends AppCompatActivity {
     EditText CheckinFrom;
     EditText CheckinTo;
     EditText phone;
+    EditText type;
+
+    //Creating Strings for request
+    String fname;
+    String lname;
+    String startdate;
+    String enddate;
+    String mobile;
+    String room_type;
 
     Button btnBook;
 
@@ -35,86 +45,54 @@ public class MainActivity extends AppCompatActivity {
         CheckinFrom = (EditText) findViewById(R.id.checkinfrom);
         CheckinTo = (EditText) findViewById(R.id.checkinto);
         phone = (EditText) findViewById(R.id.phone);
+        type = (EditText)findViewById(R.id.room_type);
+
         btnBook = (Button) findViewById(R.id.btn_Book);
 
-//        btnBook.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Retrofit retrofit = new Retrofit.Builder()
-//                        .baseUrl("")
-//                        .addConverterFactory(GsonConverterFactory.create())
-//                        .build();
-//
-//                APIService service =  retrofit.create(APIService.class);
-//                Call<List<Booking>> call = service.getBoookingDetails();
-//
-//                call.enqueue(new Callback<List<Booking>>() {
-//                    @Override
-//                    public void onResponse(Response<List<Booking>> response, Retrofit retrofit) {
-//
-//                        List<Booking> bookings = response.body();
-//
-//                        String details = "";
-//
-//                        for(int i=0; i<bookings.size(); i++){
-//                            String bookingid = bookings.get(i).getMobile();
-//
-//                            details += " \n\n bookingid: " + bookingid;
-//                        }
-//
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Throwable t) {
-//
-//                    }
-//                });
-//            }
-//
-//
-//        });
+
+        //Mapping Strings for request
+        fname = firstName.getText().toString();
+        lname = lastName.getText().toString();
+        startdate = CheckinFrom.getText().toString();
+        enddate = CheckinTo.getText().toString();
+        mobile = phone.getText().toString();
+        room_type = type.getText().toString();
+
 
         btnBook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setreservation();
+                Toast.makeText(getApplicationContext(), "Set Reservation Called", Toast.LENGTH_LONG).show();
+                book();
+        }
+        });
+
+    }
+
+    public void book(){
+
+        Retrofit retrofit = new Retrofit.Builder()
+                            .baseUrl("http://localhost:5000/")
+                            .addConverterFactory(GsonConverterFactory.create())
+                            .build();
+
+        APIService service = retrofit.create(APIService.class);
+
+        Booking booking = new Booking(startdate,enddate,room_type,fname,lname,mobile);
+
+        Call<Booking> call = service.makereservation(booking);
+        call.enqueue(new Callback<Booking>() {
+            @Override
+            public void onResponse(Call<Booking> call, Response<Booking> response) {
+
+            }
+
+            @Override
+            public void onFailure(Call<Booking> call, Throwable t) {
+
             }
         });
 
     }
 
-
-    private void setreservation() {
-        Retrofit retrofit = new Retrofit.Builder()
-                        .baseUrl("http://localhost:5000/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .build();
-
-
-
-                Booking booking = new Booking();
-                booking.setFirstname(firstName.getText().toString());
-                booking.setLastname(lastName.getText().toString());
-                booking.setCheckinFrom(CheckinFrom.getText().toString());
-                booking.setCheckinTo(CheckinTo.getText().toString());
-                booking.setMobile(phone.getText().toString());
-
-                 APIService service =  retrofit.create(APIService.class);
-
-                Call<Booking> call = service.makereservation(booking.getLastname(),booking.getFirstname(),booking.getCheckinFrom(),booking.getCheckinTo(),booking.getMobile());
-
-
-                    call.enqueue(new Callback<Booking>() {
-                        @Override
-                        public void onResponse(Call<Booking> call, Response<Booking> response) {
-
-                        }
-
-                        @Override
-                        public void onFailure(Call<Booking> call, Throwable t) {
-
-                        }
-                });
-
-    }
 }
