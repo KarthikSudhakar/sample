@@ -1,5 +1,5 @@
 import os
-from angular_flask import app
+from myapp import app
 
 
 def runserver():
