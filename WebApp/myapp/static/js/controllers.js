@@ -22,6 +22,12 @@ function LoginController($scope,$location,AuthService) {
 	
 }
 
+function sideNavController($scope, $mdSidenav) {
+        $scope.openLeftMenu = function() {
+            $mdSidenav('left').toggle();
+        };
+    } 
+
 function AboutController($scope,Post) {
 	var postsQuery = Post.get({}, function(posts) {
 		console.log(posts.objects);

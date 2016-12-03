@@ -1,0 +1,77 @@
+<md-card>
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline">Rooms Occupied</span>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+        <md-divider></md-divider>
+        <mdt-table 
+                paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}" sortable-columns=true>
+            <mdt-header-row>
+                <!-- defining column descriptions, align content to the left -->
+                <mdt-column column-definition="Room number" sortable-rows-default>
+                    Room number
+                </mdt-column>
+                <!-- inline text editing (EDITABLE-FIELDS FEATURE DOES NOT EXIST YET) -->
+                <mdt-column editable-field="textInput">
+                    Capacity
+                </mdt-column>
+                <!-- in case of sortable columns, we can set the defaultly sortable column -->
+                <mdt-column>
+                    Status
+                </mdt-column>
+                <mdt-column>Customer Name</mdt-column>
+                <mdt-column>Check-in Time</mdt-column>
+                <mdt-column>Duration of stay (days)</mdt-column>
+            </mdt-header-row>
+            <mdt-row>
+                <mdt-cell>15</mdt-cell>
+                <mdt-cell>6</mdt-cell>
+                <mdt-cell>"Ready"</mdt-cell>
+                <mdt-cell>"Harry Potter"</mdt-cell>
+                <mdt-cell>{{"09/09/2016 11:12 A.M"|date}}</mdt-cell>
+                <mdt-cell>1.5</mdt-cell>
+            </mdt-row>
+            <mdt-row>
+                <mdt-cell>10</mdt-cell>
+                <mdt-cell>4</mdt-cell>
+                <mdt-cell><span  class="text-danger">"Clean-up"</span></mdt-cell>
+                <mdt-cell>"Alex Murray"</mdt-cell>
+                <mdt-cell>{{"09/07/2016 1:15 P.M"|date: short}}</mdt-cell>
+                <mdt-cell>2</mdt-cell>
+            </mdt-row>
+        </mdt-table>
+    </md-card-content>
+</md-card>
+<md-card>
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline">Rooms Available</span>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+        <mdt-table sortable-columns>
+            <mdt-row>
+                <mdt-cell>1</mdt-cell>
+                <mdt-cell>2</mdt-cell>
+                <mdt-cell>3</mdt-cell>
+                <mdt-cell>4</mdt-cell>
+                <mdt-cell>5</mdt-cell>
+            </mdt-row>
+            <mdt-row>
+                <mdt-cell>6</mdt-cell>
+                <mdt-cell>7</mdt-cell>
+                <mdt-cell>8</mdt-cell>
+                <mdt-cell>9</mdt-cell>
+                <mdt-cell>11</mdt-cell>
+            </mdt-row>
+            <mdt-row>               
+                <mdt-cell>12</mdt-cell>
+                <mdt-cell>13</mdt-cell>
+                <mdt-cell>14</mdt-cell>
+                <mdt-cell></mdt-cell>
+            </mdt-row>
+        </mdt-table>
+    </md-card-content>
+</md-card>

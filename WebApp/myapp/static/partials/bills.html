@@ -1,0 +1,57 @@
+
+    <md-card>
+        
+        <md-card-title>
+            <md-card-title-text>
+                <span flex class="md-headline">Customer Bills</span>
+
+            </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+        <md-divider></md-divider>
+        <mdt-table 
+                paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}" sortable-columns=true>
+            <mdt-header-row>
+                <!-- defining column descriptions, align content to the left -->
+                <mdt-column column-definition="Room number" sortable-rows-default>
+                    Room number
+                </mdt-column>
+                <!-- inline text editing (EDITABLE-FIELDS FEATURE DOES NOT EXIST YET) -->
+                <mdt-column editable-field="textInput">
+                    Customer
+                </mdt-column>
+                <!-- in case of sortable columns, we can set the defaultly sortable column -->
+                <mdt-column>
+                    Status
+                </mdt-column>
+                <mdt-column>Duration of Stay(days)</mdt-column>
+                <mdt-column>Room Rate per day</mdt-column>
+                <mdt-column>Taxes </mdt-column>
+                <mdt-column>Service Charges </mdt-column>
+                <mdt-column>Total </mdt-column>
+            </mdt-header-row>
+            <mdt-row>
+                <mdt-cell>15</mdt-cell>
+                <mdt-cell>"Harry Potter"</mdt-cell>
+                <mdt-cell>"Checked-in"</mdt-cell>
+                <mdt-cell>1.5</mdt-cell>
+                <mdt-cell>{{150|currency}}</mdt-cell>
+                <mdt-cell>{{50|currency}}</mdt-cell>
+                <mdt-cell>{{150|currency}}</mdt-cell>
+                <mdt-cell>{{425|currency}}</mdt-cell>
+            </mdt-row>
+            <mdt-row>
+                <mdt-cell>10</mdt-cell>
+                <mdt-cell>"Alex Murray"</mdt-cell>
+                <mdt-cell><span  class="text-danger">"Booked"</span></mdt-cell>
+                <mdt-cell>0</mdt-cell>
+                <mdt-cell>{{250|currency}}</mdt-cell>
+                <mdt-cell>{{0|currency: short}}</mdt-cell>
+                <mdt-cell>{{0|currency: short}}</mdt-cell>
+                <mdt-cell>{{0|currency: short}}</mdt-cell>
+                
+            </mdt-row>
+        </mdt-table>
+    </md-card-content>
+    </md-card>
+

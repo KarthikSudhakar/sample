@@ -1,0 +1,41 @@
+<md-sidenav layout-fill style="min-height:560px;" class="md-sidenav-left" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" md-whiteframe=2>
+    <md-list show-gt-md>
+        <!-- List item #1 -->
+        <md-list-item>
+            <md-button ui-sref="dashboard">
+                <ng-md-icon icon="dashboard" style="fill: #F06292">
+                     </ng-md-icon>
+                DashBoard
+            </md-button>
+        </md-list-item>
+        <mg-divider> </mg-divider>
+        <!-- List item #2 -->
+        <md-list-item>
+            <md-button ui-sref="rooms">
+                <ng-md-icon icon="hotel" style="fill: #F06292">
+                     </ng-md-icon>
+                Rooms
+            </md-button>
+        </md-list-item>
+        <!-- <md-list-item >
+                                <md-button>
+                                  <md-icon class="glyphicon glyphicon-user"></md-icon>
+                                  Customers
+                                </md-button>
+                            </md-list-item> -->
+        <md-list-item class="selected">
+            <md-button ui-sref="extensions">
+                <ng-md-icon icon="today" style="fill: #F06292">
+                     </ng-md-icon>
+                Extension Requests
+            </md-button>
+        </md-list-item>
+        <md-list-item>
+            <md-button ui-sref="bills">
+                <ng-md-icon icon="local_atm" style="fill: #F06292">
+                     </ng-md-icon>
+                Bills Enquiry
+            </md-button>
+        </md-list-item>
+    </md-list>
+</md-sidenav>
