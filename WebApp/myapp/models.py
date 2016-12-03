@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from myapp.core import db
 from myapp import app
 import bcrypt
@@ -43,13 +42,6 @@ class Employee(db.Model,EmployeeJsonSerializer):
         self.password = password
         self.authenticated = False
 
-    # def __init__(self,firstname, lastname, username, password, authenticated=None):
-    #     self.first_name = firstname
-    #     self.last_name = lastname
-    #     self.username = username
-    #     self.password = password
-    #     self.authenticated = False
-
     def __repr__(self):
         return '<User %r>' % self.username
 
@@ -81,9 +73,104 @@ class Employee(db.Model,EmployeeJsonSerializer):
     def is_user_name_taken(cls, user_name):
         return db.session.query(db.exists().where(Employee.username==user_name)).scalar()
 
+class Customer(db.Model):
+    __tablename__ = "customer"
+
+    customer_id = db.Column(db.String(45),primary_key=True)
+    first_name = db.Column(db.String(45))
+    last_name = db.Column(db.String(45))
+    email = db.Column(db.String(45))
+    reservations = db.relationship('Reservation',backref='customer',lazy='dynamic')
+
+    
+
+class Roomtype(db.Model):
+
+    __tablename__ = "roomtype"
+
+    room_id = db.Column(db.Integer,primary_key=True)
+    max_occupants= db.Column(db.Integer,nullable=False)
+    description = db.Column(db.String(45))
+    std_rate = db.Column(db.Float)
+    no_beds = db.Column(db.Integer)
+    rooms = db.relationship('Room', backref='roomtype',lazy='dynamic')
+    
+
+    # def __init__(self, max_occupants, description, std_rate,no_beds):
+    #     self.max_occupants = max_occupants
+    #     self.description = description
+    #     self.std_rate = std_rate
+    #     self.no_beds = no_beds
+
+    def __repr__(self):
+        return '<Room Type %r with %d>' % (self.description, self.no_beds)
+
+
+
+class Room(db.Model):
+
+    __tablename__ ='room'
+
+    room_num = db.Column(db.Integer,primary_key=True)
+    status = db.Column(db.String(45),nullable=False)
+    room_type_id = db.Column(db.Integer, db.ForeignKey('roomtype.room_id'))
+
+
+class Reservation(db.Model):
+
+    __tablename__ ="reservation"
+
+    id = db.Column(db.Integer,primary_key=True)
+    start_date = db.Column(db.DateTime, nullable=False)
+    end_date = db.Column(db.DateTime, nullable=False)
+    booking_timestamp = db.Column(db.DateTime, default=datetime.utcnow())
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.customer_id'))
+    room_type = db.Column(db.Integer, db.ForeignKey('roomtype.room_id'))
+    roomtype = db.relationship('Roomtype', backref='reservation',uselist=False)
+
+
+class Roomoccupancy(db.Model):
+
+    __tablename__ = "roomoccupancy"
+
+    id = db.Column(db.Integer,primary_key=True)
+    checkin = db.Column(db.DateTime, nullable=False)
+    checkout = db.Column(db.DateTime, nullable=False)
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.customer_id'))
+    room_id = db.Column(db.Integer, db.ForeignKey('room.room_num'))
+    reservation_id = db.Column(db.Integer, db.ForeignKey('reservation.id'))
+    customer = db.relationship('Customer',backref='roomoccupancy', uselist=False,lazy='joined')
+    reservation = db.relationship('Reservation',backref='roomoccupancy', uselist=False,lazy='joined')
+    room = db.relationship('Room',backref='roomoccupancy', uselist=False,lazy='joined')
+
+
+class Extensionrequests(db.Model):
+    __tablename__ = 'extensionrequests'
+
+    extensionreqid = db.Column(db.Integer, primary_key=True)
+    extend_to = db.Column(db.DateTime,nullable=False)
+    status = db.Column(db.String(48))
+    customer_id = db.Column(db.Integer, db.ForeignKey('customer.customer_id'))
+    room_id = db.Column(db.Integer, db.ForeignKey('room.room_num'))
+    reservation_id = db.Column(db.Integer, db.ForeignKey('reservation.id'))
+    customer = db.relationship('Customer',backref='extensionrequests')
+    room = db.relationship('Room',backref='extensionrequests', uselist=False,cascade='delete')
+
 # models for which we want to create API endpoints
 app.config['API_MODELS'] = {'employee': Employee}
+app.config['API_MODELS'] = {'customer': Customer}
+app.config['API_MODELS'] = {'room type': Roomtype}
+app.config['API_MODELS'] = {'room': Room}
+app.config['API_MODELS'] = {'reservation': Reservation}
+app.config['API_MODELS'] = {'roomoccupancy': Roomoccupancy}
+app.config['API_MODELS'] = {'extensionrequests': Extensionrequests}
 
 # models for which we want to create CRUD-style URL endpoints,
 # and pass the routing onto our AngularJS application
 app.config['CRUD_URL_MODELS'] = {'employee': Employee}
+app.config['CRUD_URL_MODELS'] = {'room': Room}
+app.config['CRUD_URL_MODELS'] = {'room type': Roomtype}
+app.config['CRUD_URL_MODELS'] = {'reservation': Reservation}
+app.config['CRUD_URL_MODELS'] = {'customer': Customer}
+app.config['CRUD_URL_MODELS'] = {'roomoccupancy': Roomoccupancy}
+app.config['CRUD_URL_MODELS'] = {'extensionrequests': Extensionrequests}

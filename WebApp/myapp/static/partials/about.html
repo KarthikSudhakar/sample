@@ -2,6 +2,11 @@
 	<p>This is a basic AngularJS + Flask application.</p>	
 </div>
 
+<div ng-repeat="post in posts | orderBy: 'id':true ">
+	<h4><a href="/post/{{ post.id }}">{{ post.first_name }}</a></h4>
+	<p>{{ post.last_name}}<p>
+</div>
+
 <div ng-controller="LogoutController">
   <a ng-click='logout()' class="btn btn-default">Logout</a>
 </div>

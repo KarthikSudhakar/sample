@@ -2,14 +2,14 @@
 
 angular.module('angularFlaskServices', ['ngResource'])
     .factory('Post', function($resource) {
-        return $resource('/api/post/:postId', {}, {
+        return $resource('api/customer/:postId', {}, {
             query: {
                 method: 'GET',
                 params: { postId: '' },
                 isArray: true
             }
         });
-    });
+    });  
 
 angular.module('AngularFlask')
     .factory('AuthService', ['$q', '$timeout', '$http',

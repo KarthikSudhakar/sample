@@ -22,8 +22,11 @@ function LoginController($scope,$location,AuthService) {
 	
 }
 
-function AboutController($scope) {
-	
+function AboutController($scope,Post) {
+	var postsQuery = Post.get({}, function(posts) {
+		console.log(posts.objects);
+		$scope.posts = posts.objects;
+	});
 }
 
 function LogoutController($scope, $location, $route, AuthService){
