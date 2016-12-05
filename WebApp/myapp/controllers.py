@@ -114,6 +114,12 @@ crud_url_models = app.config['CRUD_URL_MODELS']
 #                 'myapp/templates/index.html').read())
 #     abort(404)
 
+@app.route('/<model_name>/')
+@app.route('/<model_name>/<item_id>')
+# catch all other requests here
+def rest_pages(model_name, item_id=None):
+    return make_response(open('myapp/templates/index.html').read())
+
 
 # special file handlers and error handlers
 @app.route('/favicon.ico')

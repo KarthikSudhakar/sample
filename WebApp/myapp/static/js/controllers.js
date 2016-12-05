@@ -3,17 +3,17 @@
 /* Controllers */
 angular.module('angularFlask')
 
-.controller('loginController',['$scope','$state','$location','AuthService',function($scope,$state,$location,AuthService) {
+.controller('loginController',['$scope','$state','$location','AuthService','$mdToast',function($scope,$state,$location,AuthService,$mdToast) {
 
 	$scope.login = function(){
 		AuthService.login($scope.loginForm.username, $scope.loginForm.password)
 		.then(function(){
 
 			console.log($location.path());
-			$location.path('/home');
+			$location.path('/home/dashboard');
 		    console.log($location.path());
 			
-			/*$state.transitionTo('dashboard');*/
+			$state.transitionTo('dashboard');
 			/*if(!$scope.$$phase) $scope.$apply()*/
           	$scope.disabled = false;
           	$scope.loginForm = {};
@@ -24,7 +24,8 @@ angular.module('angularFlask')
           $scope.disabled = false;
           $scope.loginForm = {};
         })
-        );
+        );        
+    
 	};
 	
 }]).controller('sideNavController', function($scope, $mdSidenav) {
@@ -45,9 +46,17 @@ angular.module('angularFlask')
 		AuthService.logout()
 	.then(function(response){
 		$location.path('/login');
-		//$route.reload();		
+		$route.reload();		
 		});
 	};
+})
+.controller('roomController',function($scope,$mdToast,DataService){
+	
+	DataService.getOccupiedRooms().then(function(response){	
+		$scope.rooms = {};	
+		$scope.rooms.occupancy = response;
+		console.log(response);
+	});	
 });
 
 /*function PostListController($scope, Post) {

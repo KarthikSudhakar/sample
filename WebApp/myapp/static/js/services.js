@@ -41,8 +41,7 @@ angular.module('angularFlask')
                 var deferred = $q.defer();
                 $http.get('/api/logout')
                     .success(function(data, status){
-                        if (status === 200 && data.success) {
-                            console.log("Logout service- resolved to 200");
+                        if (status === 200 && data.success) {                            
                             deferred.resolve(data);
                         } else {
                             deferred.reject();
@@ -83,4 +82,29 @@ angular.module('angularFlask')
                 logout: logout
             });
         }
-    ]);
+    ])
+    .factory('DataService',['$q', '$timeout', '$http',
+        function($q, $timeout, $http) {
+            function getOccupiedRooms(){
+                var deferred = $q.defer();
+                $http.get('/api/roomoccupancy')
+                    .success(function(data, status){
+                        if (status === 200) {                            
+                            deferred.resolve(data);
+                        } else {
+                            deferred.reject();
+                        }
+                    })
+                    .error(function(data){
+                        console.log("Logout service- resolved to error");
+                        deferred.reject();
+                    });
+                return deferred.promise;
+            }
+            return ({
+                getOccupiedRooms: getOccupiedRooms
+            });
+        }
+        
+
+        ]);

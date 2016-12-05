@@ -6,6 +6,16 @@
     </md-card-title>
     <md-card-content>
         <md-divider></md-divider>
+        <md-card style="margin:0px">
+            <md-input-container style="margin:15px;">
+                <label>Filter by search</label>
+                <input type="text" ng-model="filterName">
+            </md-input-container>
+
+            <div ng-hide="true">
+                {{(filteredItems = (rooms.occupancy.objects | filter: filterName))}}
+            </div>
+        </md-card>
         <mdt-table 
                 paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}" sortable-columns=true>
             <mdt-header-row>
@@ -25,21 +35,20 @@
                 <mdt-column>Check-in Time</mdt-column>
                 <mdt-column>Duration of stay (days)</mdt-column>
             </mdt-header-row>
-            <mdt-row>
-                <mdt-cell>15</mdt-cell>
+            <md-card ng-show="rooms.occupancy.num_results == 0">
+                <md-card-title-text>
+                <span class="md-headline">Card with image</span>
+                
+                </md-card-title-text>
+            </md-card>
+
+            <mdt-row ng-hide="rooms.occupancy.num_results == 0" ng-repeat="each in rooms.occupancy.objects">
+                <mdt-cell>{{each.room.room_number}}</mdt-cell>
+                <mdt-cell>159</mdt-cell>
                 <mdt-cell>6</mdt-cell>
-                <mdt-cell>"Ready"</mdt-cell>
-                <mdt-cell>"Harry Potter"</mdt-cell>
-                <mdt-cell>{{"09/09/2016 11:12 A.M"|date}}</mdt-cell>
-                <mdt-cell>1.5</mdt-cell>
-            </mdt-row>
-            <mdt-row>
-                <mdt-cell>10</mdt-cell>
+                <mdt-cell>24</mdt-cell>
                 <mdt-cell>4</mdt-cell>
-                <mdt-cell><span  class="text-danger">"Clean-up"</span></mdt-cell>
-                <mdt-cell>"Alex Murray"</mdt-cell>
-                <mdt-cell>{{"09/07/2016 1:15 P.M"|date: short}}</mdt-cell>
-                <mdt-cell>2</mdt-cell>
+                <mdt-cell>87</mdt-cell>
             </mdt-row>
         </mdt-table>
     </md-card-content>

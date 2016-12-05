@@ -11,65 +11,7 @@ angular.module('angularFlask', ['angularFlaskServices', 'ngRoute','ui.router', '
 	  			requireBase: false
 	  		});	
 
-	  		/*var loginstate = {name:'login',
-	            url: '/login',
-	            controller : 'loginController',
-	            templateUrl: TPL_PATH + '/login.html',
-	            access: {
-    		  			isFree: true
-  				}
-	         };*/
-
-	         /*var homestate = {
-	         	name: 'home',
-	            url: '/home',	            
-	            templateUrl: TPL_PATH + '/landing.html',
-	            access: {
-    		  			isFree: false
-  				}
-	         };*/
-
-
-			/*var dashboardState = {
-                name: 'home.dashboard',
-                url: '/dashboard',
-                controller: 'HomeCtrl',
-                templateUrl: TPL_PATH + '/home.html',
-                access: {
-    		  		isFree: false
-  				}
-            };
-
-			var extensionState = {
-	                name: 'home.extensions',
-	                url: '/extensions',
-	                templateUrl: TPL_PATH + '/home.html',
-	                access: {
-    		  			isFree: false
-  					}
-	            };*/
-
-	        /*var roomsState = {
-	            name: 'home.rooms',
-	            url: '/rooms',
-	            controller : 'RoomCtrl',
-	            templateUrl: TPL_PATH + '/rooms.html',
-	            access: {
-    		  			isFree: false
-  				}
-	        };*/
-
-	         /*var billState = {
-	            name: 'home.bills',
-	            url: '/bills',
-	            
-	            templateUrl: TPL_PATH + '/bills.html',
-	            access: {
-    		  			isFree: false
-  				}
-	         };*/
-
-	         	$urlRouterProvider.otherwise('/home');
+	         	$urlRouterProvider.otherwise('/home/dashboard');
 	         	$stateProvider.state("home",{
 	         		url: "/home",	            
 	           		templateUrl: TPL_PATH + '/landing.html',
@@ -105,6 +47,7 @@ angular.module('angularFlask', ['angularFlaskServices', 'ngRoute','ui.router', '
 	            	url: '/rooms',
 	            	parent: 'home',
 		            templateUrl: TPL_PATH + '/rooms.html',
+		            controller: 'roomController',
 		            access: {
 	    		  			isFree: false
 	  				}
@@ -156,13 +99,14 @@ angular.module('angularFlask', ['angularFlaskServices', 'ngRoute','ui.router', '
 	})
 ;
 
-angular.module('angularFlask').run(function ($rootScope,$location, $route, AuthService) {
+angular.module('angularFlask').run(function ($rootScope, $state, $location, $route, AuthService) {
+	
   $rootScope.$on('$routeChangeStart', function (event, next, current) {
   	if(!next.access.isFree && !AuthService.isLoggedIn()){
   		$location.path("/login");
-  		/*$state.transitionTo('login');*/
+  		$state.transitionTo('login');
   		$route.reload();
-  	}	
+  	}
   });
   $rootScope.$on("$stateChangeError", console.log.bind(console));
 });
