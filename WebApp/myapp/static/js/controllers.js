@@ -1,13 +1,20 @@
 'use strict';
 
 /* Controllers */
+angular.module('angularFlask')
 
-function LoginController($scope,$location,AuthService) {
+.controller('loginController',['$scope','$state','$location','AuthService',function($scope,$state,$location,AuthService) {
 
 	$scope.login = function(){
 		AuthService.login($scope.loginForm.username, $scope.loginForm.password)
 		.then(function(){
-			$location.path('/about');
+
+			console.log($location.path());
+			$location.path('/home');
+		    console.log($location.path());
+			
+			/*$state.transitionTo('dashboard');*/
+			/*if(!$scope.$$phase) $scope.$apply()*/
           	$scope.disabled = false;
           	$scope.loginForm = {};
 		   }
@@ -20,31 +27,28 @@ function LoginController($scope,$location,AuthService) {
         );
 	};
 	
-}
-
-function sideNavController($scope, $mdSidenav) {
+}]).controller('sideNavController', function($scope, $mdSidenav) {
         $scope.openLeftMenu = function() {
             $mdSidenav('left').toggle();
         };
-    } 
-
-function AboutController($scope,Post) {
+    })
+.controller('AboutController',function($scope,Post) {
 	var postsQuery = Post.get({}, function(posts) {
 		console.log(posts.objects);
 		$scope.posts = posts.objects;
 	});
-}
+})
 
-function LogoutController($scope, $location, $route, AuthService){
-	console.log("coming into LogoutController")
+.controller('LogoutController',function($scope, $location, $route, AuthService){
+	
 	$scope.logout = function(){
 		AuthService.logout()
 	.then(function(response){
-		$location.path('/');
+		$location.path('/login');
 		//$route.reload();		
 		});
 	};
-}
+});
 
 /*function PostListController($scope, Post) {
 	var postsQuery = Post.get({}, function(posts) {

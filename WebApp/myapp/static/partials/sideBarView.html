@@ -2,7 +2,7 @@
     <md-list show-gt-md>
         <!-- List item #1 -->
         <md-list-item>
-            <md-button ui-sref="dashboard">
+            <md-button ui-sref=".dashboard" ng-click="$event.stopPropagation()">
                 <ng-md-icon icon="dashboard" style="fill: #F06292">
                      </ng-md-icon>
                 DashBoard
@@ -11,7 +11,7 @@
         <mg-divider> </mg-divider>
         <!-- List item #2 -->
         <md-list-item>
-            <md-button ui-sref="rooms">
+            <md-button ui-sref=".rooms" ng-click="$event.stopPropagation()">
                 <ng-md-icon icon="hotel" style="fill: #F06292">
                      </ng-md-icon>
                 Rooms
@@ -24,14 +24,14 @@
                                 </md-button>
                             </md-list-item> -->
         <md-list-item class="selected">
-            <md-button ui-sref="extensions">
+            <md-button ui-sref=".extension" ng-click="$event.stopPropagation()">
                 <ng-md-icon icon="today" style="fill: #F06292">
                      </ng-md-icon>
                 Extension Requests
             </md-button>
         </md-list-item>
         <md-list-item>
-            <md-button ui-sref="bills">
+            <md-button ui-sref=".bill" ng-click="$event.stopPropagation()">
                 <ng-md-icon icon="local_atm" style="fill: #F06292">
                      </ng-md-icon>
                 Bills Enquiry

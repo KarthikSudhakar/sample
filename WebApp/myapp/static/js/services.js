@@ -11,7 +11,7 @@ angular.module('angularFlaskServices', ['ngResource'])
         });
     });  
 
-angular.module('AngularFlask')
+angular.module('angularFlask')
     .factory('AuthService', ['$q', '$timeout', '$http',
         function($q, $timeout, $http) {
 

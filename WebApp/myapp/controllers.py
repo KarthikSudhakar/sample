@@ -94,12 +94,6 @@ def logout():
 def index():
     return make_response(open('myapp/templates/index.html').read())
 
-@app.route('/about')
-@app.route('/blog')
-@login_required
-def basic_pages(**kwargs):
-    return make_response(open('myapp/templates/index.html').read())
-
 
 # routing for CRUD-style endpoints
 # passes routing onto the angular frontend if the requested resource    
