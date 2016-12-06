@@ -33,7 +33,7 @@ class Employee(db.Model,EmployeeJsonSerializer):
     first_name    = db.Column(db.String(120), nullable=False)
     last_name     = db.Column(db.String(120), nullable=False)
     username     = db.Column(db.String(120),  primary_key = True, index = True, unique = True, nullable=False)
-    password      = db.Column(db.String(20), unique = True, nullable=False)
+    password      = db.Column(db.String(100), unique = True, nullable=False)
     authenticated = db.Column(db.Boolean)
 
     def __init__(self, username, password):
