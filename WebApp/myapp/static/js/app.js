@@ -2,6 +2,22 @@
 
 angular.module('angularFlask', ['angularFlaskServices', 'ngRoute','ui.router', 'ngAnimate', 'ngMaterial', 'ngMdIcons', 'mdDataTable'])
 	.constant('TPL_PATH', 'static/partials')
+	.filter('daysbetween',function(){
+		return function( date1, date2 ) {
+		  //Get 1 day in milliseconds
+		  var one_day=1000*60*60*24;
+
+		  // Convert both dates to milliseconds
+		  var date1_ms = (new Date(date1)).getTime();
+		  var date2_ms = (new Date(date2)).getTime();
+
+		  // Calculate the difference in milliseconds
+		  var difference_ms = date2_ms - date1_ms;
+		    
+		  // Convert back to days and return
+		  return Math.round(difference_ms/one_day); 
+		}
+	})
 
 	.config(/*['$routeProvider', '$locationProvider','$stateProvider', '$urlRouterProvider',*/
 		function( $locationProvider,$routeProvider, $stateProvider, $urlRouterProvider, TPL_PATH, $mdThemingProvider) {

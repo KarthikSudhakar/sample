@@ -12,7 +12,7 @@ def main():
 		db.metadata.create_all(db.engine)
 	if Employee.query.all():
 		print ('A user already exists! Create another? (y/n): '),
-		create = input()
+		create = raw_input()
 		if create == 'n':
 			return
 	

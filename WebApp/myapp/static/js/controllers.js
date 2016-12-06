@@ -54,7 +54,8 @@ angular.module('angularFlask')
 	
 	DataService.getOccupiedRooms().then(function(response){	
 		$scope.rooms = {};	
-		$scope.rooms.occupancy = response;
+		$scope.rooms.numresults = response.num_results;
+		$scope.rooms.occupancy = response.objects;
 		console.log(response);
 	});	
 });

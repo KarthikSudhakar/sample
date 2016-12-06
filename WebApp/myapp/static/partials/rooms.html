@@ -25,30 +25,27 @@
                 </mdt-column>
                 <!-- inline text editing (EDITABLE-FIELDS FEATURE DOES NOT EXIST YET) -->
                 <mdt-column editable-field="textInput">
-                    Capacity
+                    Customer First Name
                 </mdt-column>
                 <!-- in case of sortable columns, we can set the defaultly sortable column -->
                 <mdt-column>
-                    Status
+                    Customer Last Name
                 </mdt-column>
-                <mdt-column>Customer Name</mdt-column>
-                <mdt-column>Check-in Time</mdt-column>
+                <mdt-column>Checked In</mdt-column>                
                 <mdt-column>Duration of stay (days)</mdt-column>
             </mdt-header-row>
-            <md-card ng-show="rooms.occupancy.num_results == 0">
+            <md-card ng-show="rooms.numresults == 0">
                 <md-card-title-text>
-                <span class="md-headline">Card with image</span>
-                
+                <span class="md-headline">No rooms Found</span>                
                 </md-card-title-text>
             </md-card>
 
-            <mdt-row ng-hide="rooms.occupancy.num_results == 0" ng-repeat="each in rooms.occupancy.objects">
-                <mdt-cell>{{each.room.room_number}}</mdt-cell>
-                <mdt-cell>159</mdt-cell>
-                <mdt-cell>6</mdt-cell>
-                <mdt-cell>24</mdt-cell>
-                <mdt-cell>4</mdt-cell>
-                <mdt-cell>87</mdt-cell>
+            <mdt-row ng-hide="rooms.numresults == 0" ng-repeat="each in rooms.occupancy">
+                <mdt-cell>{{each.room_id}}</mdt-cell>
+                <mdt-cell>{{each.customer.first_name}}</mdt-cell>
+                <mdt-cell>{{each.customer.last_name}}</mdt-cell>
+                <mdt-cell>{{each.checkin|date}}</mdt-cell>
+                <mdt-cell>{{each.reservation.start_date|date|daysbetween:(each.reservation.end_date|date)}}</mdt-cell>
             </mdt-row>
         </mdt-table>
     </md-card-content>

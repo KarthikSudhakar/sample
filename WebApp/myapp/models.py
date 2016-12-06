@@ -76,7 +76,7 @@ class Employee(db.Model,EmployeeJsonSerializer):
 class Customer(db.Model):
     __tablename__ = "customer"
 
-    customer_id = db.Column(db.String(45),primary_key=True)
+    customer_id = db.Column(db.Unicode(45),primary_key=True)
     first_name = db.Column(db.String(45))
     last_name = db.Column(db.String(45))
     email = db.Column(db.String(45))
@@ -123,8 +123,8 @@ class Reservation(db.Model):
     id = db.Column(db.Integer,primary_key=True)
     start_date = db.Column(db.DateTime, nullable=False)
     end_date = db.Column(db.DateTime, nullable=False)
-    booking_timestamp = db.Column(db.DateTime, default=datetime.utcnow())
-    customer_id = db.Column(db.Integer, db.ForeignKey('customer.customer_id'))
+    booking_timestamp = db.Column(db.DateTime, default=datetime.now())
+    customer_id = db.Column(db.Unicode(45), db.ForeignKey('customer.customer_id'))
     room_type = db.Column(db.Integer, db.ForeignKey('roomtype.room_id'))
     roomtype = db.relationship('Roomtype', backref='reservation',uselist=False)
 
@@ -135,8 +135,8 @@ class Roomoccupancy(db.Model):
 
     id = db.Column(db.Integer,primary_key=True)
     checkin = db.Column(db.DateTime, nullable=False)
-    checkout = db.Column(db.DateTime, nullable=False)
-    customer_id = db.Column(db.Integer, db.ForeignKey('customer.customer_id'))
+    checkout = db.Column(db.DateTime)
+    customer_id = db.Column(db.Unicode(45), db.ForeignKey('customer.customer_id'))
     room_id = db.Column(db.Integer, db.ForeignKey('room.room_num'))
     reservation_id = db.Column(db.Integer, db.ForeignKey('reservation.id'))
     customer = db.relationship('Customer',backref='roomoccupancy', uselist=False,lazy='joined')
@@ -150,7 +150,7 @@ class Extensionrequests(db.Model):
     extensionreqid = db.Column(db.Integer, primary_key=True)
     extend_to = db.Column(db.DateTime,nullable=False)
     status = db.Column(db.String(48))
-    customer_id = db.Column(db.Integer, db.ForeignKey('customer.customer_id'))
+    customer_id = db.Column(db.Unicode(45), db.ForeignKey('customer.customer_id'))
     room_id = db.Column(db.Integer, db.ForeignKey('room.room_num'))
     reservation_id = db.Column(db.Integer, db.ForeignKey('reservation.id'))
     customer = db.relationship('Customer',backref='extensionrequests')
