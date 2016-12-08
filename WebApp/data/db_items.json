@@ -1,1 +1,99 @@
-{ "post": [{"body": "Welcome to my blog. I will be putting up posts about various topics, so make sure to check back soon.", "title": "My First Blog Post"}, {"body": "It is day two of my blogging efforts, and a lot has changed since I last wrote. Well, not really...", "title": "My Second Blog Post"}] }
+{
+	"roomtype": [{
+		"max_occupants": 6,
+		"description": "Suite",
+		"std_rate": 450,
+		"no_beds": 2
+	}, {
+		"max_occupants": 2,
+		"description": "Standard",
+		"std_rate": 90,
+		"no_beds": 1
+	}, {
+		"max_occupants": 2,
+		"description": "Deluxe",
+		"std_rate": 120,
+		"no_beds": 1
+	}],
+	"room": [{
+		"status": "Available",
+		"room_type_id": 1
+	}, {
+		"status": "Occupied",
+		"room_type_id": 2
+	}, {
+		"status": "Occupied",
+		"room_type_id": 3
+	}, {
+		"status": "Occupied",
+		"room_type_id": 2
+	}, {
+		"status": "Available",
+		"room_type_id": 3
+	}],
+	"customer": [{
+		"customer_id":"2341234567",
+		"first_name": "Abraham",
+		"last_name": "Lincoln",
+		"email": "abel@gmail.com"
+	},{
+		"customer_id":"4509887645",
+		"first_name": "Martha",
+		"last_name": "Stewart",
+		"email": "martha.stewart@gmail.com"
+	},{
+		"customer_id":"4538876256",
+		"first_name": "Charlie",
+		"last_name": "Puth",
+		"email": "charlie.p@gmail.com"
+	}, {
+		"customer_id":"4089667189",
+		"first_name": "Adam",
+		"last_name": "Silensky",
+		"email": "adam.silensky@gmail.com"
+	}, {
+		"customer_id":"6087789120",
+		"first_name": "Venkat",
+		"last_name": "Subramium",
+		"email": "vakat.subbu@gmail.com"
+	}],
+
+	"reservation": [{
+		"start_date": "2016-12-7 3:16:19.822000",
+		"end_date": "2016-12-15 3:16:19.822000",
+		"customer_id": "2341234567",
+		"room_type": 2
+	}, {
+		"start_date": "2016-12-7 3:16:19.822000",
+		"end_date": "2016-12-15 3:16:19.822000",
+		"customer_id": "4089667189",
+		"room_type": 2
+	}, {
+		"start_date": "2016-12-23 12:16:00",
+		"end_date": "2016-12-24 12:16:00",
+		"customer_id": "6087789120",
+		"room_type": 1
+	},{
+		"start_date": "2016-12-5 3:16:19",
+		"end_date": "2016-12-6 3:16:19",
+		"customer_id": "4089667189",
+		"room_type": 3
+	}],
+	"roomoccupancy": [{
+		"checkin": "2016-12-7 10:08:19",
+		"customer_id": "2341234567",
+		"room_id": 2,
+		"reservation_id": 1
+	}, {
+		"checkin": "2016-12-7 12:18:00",
+		"customer_id": "4089667189",
+		"room_id": 4,
+		"reservation_id": 2
+	}, {
+		"checkin": "2016-12-5 10:18:00",
+		"customer_id": "4089667189",
+		"room_id": 3,
+		"reservation_id": 4
+	}]
+
+}

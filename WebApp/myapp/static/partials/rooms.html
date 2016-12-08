@@ -1,0 +1,95 @@
+<md-card>
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline">Rooms Occupied</span>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+        <md-divider></md-divider>
+        <!-- <md-card style="margin:0px">
+            <md-input-container style="margin:15px;">
+                <label>Filter by search</label>
+                <input type="text" ng-model="filterName">
+            </md-input-container>
+        </md-card> -->
+        <mdt-table 
+                paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}" sortable-columns=true>
+            <mdt-header-row>
+                <!-- defining column descriptions, align content to the left -->
+                <mdt-column column-definition="Room number" sortable-rows-default>
+                    Room number
+                </mdt-column>
+                <!-- inline text editing (EDITABLE-FIELDS FEATURE DOES NOT EXIST YET) -->
+                <mdt-column editable-field="textInput">
+                    Customer First Name
+                </mdt-column>
+                <!-- in case of sortable columns, we can set the defaultly sortable column -->
+                <mdt-column>
+                    Customer Last Name
+                </mdt-column>
+                <mdt-column>Checked In</mdt-column>                
+                <mdt-column>Duration of stay (days)</mdt-column>
+            </mdt-header-row>
+            <md-card ng-show="rooms.numresults == 0">
+                <md-card-title-text>
+                <span class="md-headline">No rooms Found</span>                
+                </md-card-title-text>
+            </md-card>
+            
+           <!--  <div ng-hide="true">
+               {{(filteredItems = (rooms.occupancy | filter: filterName))}}
+           </div> -->
+            <mdt-row ng-hide="rooms.numresults == 0" ng-repeat="each in rooms.occupancy">
+                <mdt-cell>{{each.room_id}}</mdt-cell>
+                <mdt-cell>{{each.customer.first_name}}</mdt-cell>
+                <mdt-cell>{{each.customer.last_name}}</mdt-cell>
+                <mdt-cell>{{each.checkin|date}}</mdt-cell>
+                <mdt-cell>{{each.reservation.start_date|date|daysbetween:(each.reservation.end_date|date)}}</mdt-cell>
+            </mdt-row>
+        </mdt-table>
+    </md-card-content>
+</md-card>
+<md-card>
+    <md-card-title>
+        <md-card-title-text>
+            <span class="md-headline">Rooms Available</span>
+        </md-card-title-text>
+    </md-card-title>
+    <md-card ng-show="rooms.available == 0">
+                <md-card-title-text>
+                <span class="md-headline">No rooms Found</span>                
+                </md-card-title-text>
+            </md-card>
+    <md-card-content>
+        <mdt-table 
+                paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}" sortable-columns=true>
+            <mdt-header-row>
+                <!-- defining column descriptions, align content to the left -->
+                <mdt-column column-definition="Room number" sortable-rows-default>
+                    Room number
+                </mdt-column>
+                <!-- inline text editing (EDITABLE-FIELDS FEATURE DOES NOT EXIST YET) -->
+                <mdt-column editable-field="textInput">
+                    Room Type
+                </mdt-column>
+                <mdt-column editable-field="textInput">
+                    Max Occupants
+                </mdt-column>
+                <mdt-column editable-field="textInput">
+                    No of Beds
+                </mdt-column>
+                <mdt-column editable-field="textInput">
+                    Standard Rate
+                </mdt-column>
+            </mdt-header-row>
+            <mdt-row ng-repeat="r in rooms.availableRooms">
+                <mdt-cell>r.room_num</mdt-cell>
+                <mdt-cell>r.roomtype.description</mdt-cell>
+                <mdt-cell>r.roomtype.max_occupants</mdt-cell>
+                <mdt-cell>r.roomtype.no_beds</mdt-cell>
+                <mdt-cell>r.roomtype.std_rate|currency</mdt-cell>
+            </mdt-row>
+            
+        </mdt-table>
+    </md-card-content>
+</md-card>
