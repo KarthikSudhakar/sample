@@ -34,10 +34,41 @@ angular.module('angularFlask')
         };
     })
 .controller('AboutController',function($scope,Post) {
-	var postsQuery = Post.get({}, function(posts) {
-		console.log(posts.objects);
-		$scope.posts = posts.objects;
-	});
+	// line chart 
+	$scope.chartOptions = {
+                    title: {
+                        text: 'Booking Across the Month'
+                    },
+                    xAxis: {
+                        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
+                            'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+                    },
+
+                    series: [{
+                        data: [29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+                    }]
+                };
+
+	//****** activity gauge *******//
+   $scope.solidGaugeData = [{
+      name: 'Rooms Available',
+      borderColor: Highcharts.getOptions().colors[0],
+      data: [{
+        color: Highcharts.getOptions().colors[0],
+        radius: '100%',
+        innerRadius: '100%',
+        y: 80
+      }]
+    }, {
+      name: 'Rooms Occupied',
+      borderColor: Highcharts.getOptions().colors[1],
+      data: [{
+        color: Highcharts.getOptions().colors[1],
+        radius: '75%',
+        innerRadius: '75%',
+        y: 65
+      }]
+    }];
 })
 
 .controller('LogoutController',function($scope, $location, $route, AuthService){
@@ -57,6 +88,12 @@ angular.module('angularFlask')
 		$scope.rooms.numresults = response.num_results;
 		$scope.rooms.occupancy = response.objects;
 		console.log(response);
+	});	
+	DataService.getAvailableRooms().then(function(data){	
+		
+		$scope.rooms.available = data.num_results;
+		$scope.rooms.availableRooms = data.objects;
+		console.log(data);
 	});	
 });
 

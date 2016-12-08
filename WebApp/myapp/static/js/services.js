@@ -96,13 +96,33 @@ angular.module('angularFlask')
                         }
                     })
                     .error(function(data){
-                        console.log("Logout service- resolved to error");
+                        console.log("getOccupied Room service- resolved to error");
                         deferred.reject();
                     });
                 return deferred.promise;
+            };
+
+            function getAvailableRooms(){
+                 var deferred = $q.defer();
+                 var q = '?q={"filters":[{"name":"status","op":"eq","val":"Available"}]}';
+                $http.get('/api/room' + q)
+                    .success(function(data, status){
+                        if (status === 200) {                            
+                            deferred.resolve(data);
+                        } else {
+                            deferred.reject();
+                        }
+                    })
+                    .error(function(data){
+                        console.log("getAvailableRoom  service- resolved to error");
+                        deferred.reject();
+                    });
+                return deferred.promise;
+
             }
             return ({
-                getOccupiedRooms: getOccupiedRooms
+                getOccupiedRooms: getOccupiedRooms,
+                getAvailableRooms: getAvailableRooms
             });
         }
         

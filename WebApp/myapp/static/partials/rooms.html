@@ -6,16 +6,12 @@
     </md-card-title>
     <md-card-content>
         <md-divider></md-divider>
-        <md-card style="margin:0px">
+        <!-- <md-card style="margin:0px">
             <md-input-container style="margin:15px;">
                 <label>Filter by search</label>
                 <input type="text" ng-model="filterName">
             </md-input-container>
-
-            <div ng-hide="true">
-                {{(filteredItems = (rooms.occupancy.objects | filter: filterName))}}
-            </div>
-        </md-card>
+        </md-card> -->
         <mdt-table 
                 paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}" sortable-columns=true>
             <mdt-header-row>
@@ -39,7 +35,10 @@
                 <span class="md-headline">No rooms Found</span>                
                 </md-card-title-text>
             </md-card>
-
+            
+           <!--  <div ng-hide="true">
+               {{(filteredItems = (rooms.occupancy | filter: filterName))}}
+           </div> -->
             <mdt-row ng-hide="rooms.numresults == 0" ng-repeat="each in rooms.occupancy">
                 <mdt-cell>{{each.room_id}}</mdt-cell>
                 <mdt-cell>{{each.customer.first_name}}</mdt-cell>
@@ -56,28 +55,41 @@
             <span class="md-headline">Rooms Available</span>
         </md-card-title-text>
     </md-card-title>
+    <md-card ng-show="rooms.available == 0">
+                <md-card-title-text>
+                <span class="md-headline">No rooms Found</span>                
+                </md-card-title-text>
+            </md-card>
     <md-card-content>
-        <mdt-table sortable-columns>
-            <mdt-row>
-                <mdt-cell>1</mdt-cell>
-                <mdt-cell>2</mdt-cell>
-                <mdt-cell>3</mdt-cell>
-                <mdt-cell>4</mdt-cell>
-                <mdt-cell>5</mdt-cell>
+        <mdt-table 
+                paginated-rows="{isEnabled: true, rowsPerPageValues: [5,10,20,100]}" sortable-columns=true>
+            <mdt-header-row>
+                <!-- defining column descriptions, align content to the left -->
+                <mdt-column column-definition="Room number" sortable-rows-default>
+                    Room number
+                </mdt-column>
+                <!-- inline text editing (EDITABLE-FIELDS FEATURE DOES NOT EXIST YET) -->
+                <mdt-column editable-field="textInput">
+                    Room Type
+                </mdt-column>
+                <mdt-column editable-field="textInput">
+                    Max Occupants
+                </mdt-column>
+                <mdt-column editable-field="textInput">
+                    No of Beds
+                </mdt-column>
+                <mdt-column editable-field="textInput">
+                    Standard Rate
+                </mdt-column>
+            </mdt-header-row>
+            <mdt-row ng-repeat="r in rooms.availableRooms">
+                <mdt-cell>r.room_num</mdt-cell>
+                <mdt-cell>r.roomtype.description</mdt-cell>
+                <mdt-cell>r.roomtype.max_occupants</mdt-cell>
+                <mdt-cell>r.roomtype.no_beds</mdt-cell>
+                <mdt-cell>r.roomtype.std_rate|currency</mdt-cell>
             </mdt-row>
-            <mdt-row>
-                <mdt-cell>6</mdt-cell>
-                <mdt-cell>7</mdt-cell>
-                <mdt-cell>8</mdt-cell>
-                <mdt-cell>9</mdt-cell>
-                <mdt-cell>11</mdt-cell>
-            </mdt-row>
-            <mdt-row>               
-                <mdt-cell>12</mdt-cell>
-                <mdt-cell>13</mdt-cell>
-                <mdt-cell>14</mdt-cell>
-                <mdt-cell></mdt-cell>
-            </mdt-row>
+            
         </mdt-table>
     </md-card-content>
 </md-card>

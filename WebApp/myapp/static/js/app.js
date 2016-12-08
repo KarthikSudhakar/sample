@@ -47,6 +47,7 @@ angular.module('angularFlask', ['angularFlaskServices', 'ngRoute','ui.router', '
 	                url: '/dashboard',
 	                parent: 'home',
 	                templateUrl: TPL_PATH + '/about.html',
+	                controller: 'AboutController',
 	                access: {
 	    		  		isFree: false
 	  				}
